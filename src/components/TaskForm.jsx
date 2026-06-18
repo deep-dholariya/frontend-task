@@ -20,7 +20,10 @@ function TaskForm() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5000/api/tasks", formData);
+      const res = await axios.post(
+        "https://task-manager-backend-1bka.onrender.com/api/tasks",
+        formData
+      );
 
       console.log(res.data);
 
@@ -32,6 +35,8 @@ function TaskForm() {
         priority: "Medium",
         dueDate: "",
       });
+
+      window.location.reload();
     } catch (error) {
       console.log(error);
 

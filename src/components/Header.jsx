@@ -21,12 +21,6 @@ function Header() {
                 View Tasks
               </Link>
             </li>
-
-            {/* <li>
-              <Link to="/edit-task" className="hover:text-gray-200">
-                Edit Task
-              </Link>
-            </li> */}
           </ul>
         </nav>
       </div>

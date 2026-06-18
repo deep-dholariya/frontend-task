@@ -6,6 +6,8 @@ function EditTask() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const API_URL = "https://task-manager-backend-1bka.onrender.com/api/tasks";
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -17,7 +19,7 @@ function EditTask() {
     const loadTask = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/tasks?id=${id}`
+          `${API_URL}?id=${id}`
         );
 
         const task = response.data;
@@ -52,7 +54,7 @@ function EditTask() {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/tasks/${id}`,
+        `${API_URL}/${id}`,
         formData
       );
 
@@ -65,63 +67,62 @@ function EditTask() {
   };
 
   return (
-  <div className="max-w-2xl mx-auto mt-6 sm:mt-10 px-4">
-    <form
-      onSubmit={handleSubmit}
-      className="bg-white p-4 sm:p-6 rounded-xl shadow"
-    >
-      <h2 className="text-xl sm:text-2xl font-bold mb-5">
-        Edit Task
-      </h2>
-
-      <input
-        type="text"
-        name="title"
-        value={formData.title}
-        onChange={handleChange}
-        placeholder="Task Title"
-        className="w-full border p-3 rounded mb-3 text-sm sm:text-base"
-        required
-      />
-
-      <textarea
-        name="description"
-        value={formData.description}
-        onChange={handleChange}
-        placeholder="Task Description"
-        rows="4"
-        className="w-full border p-3 rounded mb-3 text-sm sm:text-base"
-      />
-
-      <select
-        name="priority"
-        value={formData.priority}
-        onChange={handleChange}
-        className="w-full border p-3 rounded mb-3 text-sm sm:text-base"
+    <div className="max-w-2xl mx-auto mt-6 sm:mt-10 px-4">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white p-4 sm:p-6 rounded-xl shadow"
       >
-        <option value="High">High</option>
-        <option value="Medium">Medium</option>
-        <option value="Low">Low</option>
-      </select>
+        <h2 className="text-xl sm:text-2xl font-bold mb-5">
+          Edit Task
+        </h2>
 
-      <input
-        type="date"
-        name="dueDate"
-        value={formData.dueDate}
-        onChange={handleChange}
-        className="w-full border p-3 rounded mb-4 text-sm sm:text-base"
-      />
+        <input
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          placeholder="Task Title"
+          className="w-full border p-3 rounded mb-3 text-sm sm:text-base"
+          required
+        />
 
-      <button
-        type="submit"
-        className="w-full sm:w-auto bg-yellow-500 text-white px-5 py-3 rounded hover:bg-yellow-600"
-      >
-        Update Task
-      </button>
-    </form>
-  </div>
-);
+        <textarea
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+          placeholder="Task Description"
+          rows="4"
+          className="w-full border p-3 rounded mb-3 text-sm sm:text-base"
+        />
+
+        <select
+          name="priority"
+          value={formData.priority}
+          onChange={handleChange}
+          className="w-full border p-3 rounded mb-3 text-sm sm:text-base"
+        >
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+        </select>
+
+        <input
+          type="date"
+          name="dueDate"
+          value={formData.dueDate}
+          onChange={handleChange}
+          className="w-full border p-3 rounded mb-4 text-sm sm:text-base"
+        />
+
+        <button
+          type="submit"
+          className="w-full sm:w-auto bg-yellow-500 text-white px-5 py-3 rounded hover:bg-yellow-600"
+        >
+          Update Task
+        </button>
+      </form>
+    </div>
+  );
 }
 
 export default EditTask;
-

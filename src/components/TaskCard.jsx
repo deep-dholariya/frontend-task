@@ -18,7 +18,7 @@ function TaskCard({ task }) {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/tasks/${task._id}`
+        `https://task-manager-backend-1bka.onrender.com/api/tasks/${task._id}`
       );
 
       alert("Task Deleted Successfully");
@@ -31,7 +31,7 @@ function TaskCard({ task }) {
   const handleComplete = async () => {
     try {
       const res = await axios.patch(
-        `http://localhost:5000/api/tasks/${task._id}/complete`
+        `https://task-manager-backend-1bka.onrender.com/api/tasks/${task._id}/complete`
       );
 
       alert(res.data.message);
